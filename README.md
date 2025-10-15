@@ -15,6 +15,3 @@ This repository contains **MIPS Assembly lab exercises** .
 |
 ├── README.md   
 `````
- 
-## 👩‍💻Author
-### Mariam Refaat Elshamy 
