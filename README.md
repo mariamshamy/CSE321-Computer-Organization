@@ -3,7 +3,7 @@
 This repository contains **MIPS Assembly lab exercises** .
  
 ## 📂 Folder Structure
-
+`````
 ├── labs/                    
  │   ├── lab1/
  │   │   ├── sectionWork.asm       # Section work
@@ -12,7 +12,7 @@ This repository contains **MIPS Assembly lab exercises** .
  │   ├── lab2/
  │   └── ...
  ├── README.md   
-
+`````
  
-👩‍💻 Author
+##👩‍💻 Author
 Mariam Refaat Elshamy 
