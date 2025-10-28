@@ -10,11 +10,9 @@ li $v0,4
 la $a0,name
 syscall
 
-li $v0,4
 la $a0,id
 syscall
 
-li $v0,4
 la $a0,course
 syscall
 

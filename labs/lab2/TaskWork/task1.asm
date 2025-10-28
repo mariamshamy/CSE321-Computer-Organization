@@ -1,64 +1,49 @@
 .data
-fnp: .asciiz "Enter the first number: "
-snp: .asciiz "Enter the second number: "
-tnp: .asciiz "Enter the third number: "
-fonp: .asciiz "Enter the fourth number: "
-res: .asciiz "the result=  "
+program: .asciiz "Enter four integers and get the average!!\n"
+fnp: .asciiz "Enter number: "
+res: .asciiz "the average=  "
+newLine: .asciiz "\n "
 
 .text
 main:
+    li $v0, 4
+    la $a0, program
+    syscall
+
+    li $t1, 4           # $t0 <- 4
+    
+    addi $t2, $zero, 1      # $t1 <- i
+    move $t0, $zero         # $t2 <- sum
+
+for:
+    bgt $t2, $t1, endfor
+
 li $v0,4
 la $a0,fnp
 syscall
 
 li $v0,5
 syscall 
-move $t0, $v0
 
-li $v0,4
-la $a0,snp
-syscall
+add $t0,$t0,$v0
+addi $t2,$t2,1
 
-li $v0,5
-syscall 
-move $t1, $v0
+    j for
 
-li $v0,4
-la $a0,tnp
-syscall
+endfor:
+div $t3,$t0,$t1
 
-li $v0,5
-syscall 
-move $t2, $v0
+    li $v0, 4
+    la $a0, res
+    syscall
 
-li $v0,4
-la $a0,fonp
-syscall
+    li $v0, 1
+    move $a0, $t3
+    syscall
 
-li $v0,5
-syscall 
-move $t3, $v0
-
-li $v0,4
-la $a0,res
-syscall
-
-addu $t4, $t0 ,$t1
-addu $t5, $t4 ,$t2
-addu $a0, $t5 ,$t3
-
-li $t6,4  
-
-mtc1 $a0, $f0      # move 7 into floating point register f0
-mtc1 $t6, $f1      # move 2 into floating point register f1
-
-cvt.s.w $f0, $f0    # convert integer in f0 to float
-cvt.s.w $f1, $f1    # convert integer in f1 to float
-
-div.s $f12, $f0, $f1  # f2 = f0 / f1   (7 ÷ 2 = 3.5)
-
-li $v0,2
-syscall
+    li $v0, 4
+    la $a0, newLine
+    syscall
 
 exit:
 li $v0,10

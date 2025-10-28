@@ -1,10 +1,16 @@
 .data
+program: .asciiz "Enter n integers and get the average!!\n"
 prompt: .asciiz "Enter n: "
 numprom:  .asciiz "Enter the number: "
-res: .asciiz "the result=  "
+res: .asciiz "the average=  "
+newLine: .asciiz "\n "
 
 .text
 main:
+    li $v0, 4
+    la $a0, program
+    syscall
+
 li $v0,4
 la $a0,prompt
 syscall
@@ -27,24 +33,28 @@ for:
     li $v0, 5
     syscall
 
-    move $t3, $v0             
-
-    addu $t2, $t2, $t3
+    addu $t2, $t2, $v0
 
     addi $t1, $t1, 1
+
     j for
 
 endLoop:
-mtc1 $t0, $f0      # move 7 into floating point register f0
-mtc1 $t2, $f2    # move 2 into floating point register f1
 
-cvt.s.w $f0, $f0    # convert integer in f0 to float
-cvt.s.w $f2, $f2    # convert integer in f1 to float
+divu $t2,$t0
 
-div.s $f12, $f2, $f0  # f12 = f0 / f1   (7 ÷ 2 = 3.5)
+    li $v0, 4
+    la $a0, res
+    syscall
 
-li $v0,2
-syscall
+mflo $a0
+
+    li $v0, 1
+    syscall
+
+    li $v0, 4
+    la $a0, newLine
+    syscall
 
 exit:
     li $v0, 10
