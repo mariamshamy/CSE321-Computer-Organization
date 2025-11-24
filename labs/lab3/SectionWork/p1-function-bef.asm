@@ -9,10 +9,11 @@ main:
 
     jal add_func
 
-    move $t0, $v0
+    move $a0, $v0
 
     li $v0,1
     syscall
 
+#no need for exit: becouse of:
 returnMain:
-    jr $ra  #msh ha3raf arga3lo tany 'add-fun will override it'
+    jr $ra  #msh ha3raf arga3lo tany 'add-fun will override it' ---? another problem sol-->edit 1
